@@ -1,36 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+
+import useLayoutStore from "@/store/useLayoutStore";
 
 const Content = (props) => {
   const { children } = props;
-  const [text, setText] = useState("");
 
-  const contentRef = useRef();
-
-  useEffect(() => {
-    if (contentRef?.current) {
-      console.log(
-        "\ninnerHeight: ",
-        window.innerHeight,
-        "offsetHeight: ",
-        contentRef.current.offsetHeight,
-        "\ndiff: ",
-        window.innerHeight - contentRef.current.offsetHeight
-      );
-      setText(
-        `innerHeight: ${window.innerHeight} / offsetHeight: ${
-          contentRef.current.offsetHeight
-        } / diff: ${window.innerHeight - contentRef.current.offsetHeight}`
-      );
-    }
-  }, [contentRef]);
-
+  const { height } = useLayoutStore();
+  console.log("height", height);
   return (
-    <div className="container" ref={contentRef}>
-      <h1>{text}</h1>
+    <div className="container">
       {children}
       <style jsx>{`
         .container {
-          height: calc(100% - 96px);
+          height: calc(${height - 96}px);
           overflow-y: auto;
         }
         .container > h1 {
