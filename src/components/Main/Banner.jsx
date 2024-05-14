@@ -52,6 +52,7 @@ const Banner = (props) => {
       </Swiper>
       <style jsx>{`
         .container {
+          margin-top: 20px;
           padding-bottom: 50px;
         }
         .banner_wrapper {

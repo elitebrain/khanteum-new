@@ -1,8 +1,8 @@
 import React from "react";
 
-const Gnb = () => {
+const Gnb = ({ gnbRef }) => {
   return (
-    <nav className="container">
+    <nav className="container" ref={gnbRef}>
       <ul>
         <li>인덱스</li>
         <li>업로드</li>
@@ -27,6 +27,7 @@ const Gnb = () => {
           width: 20%;
           text-align: center;
           font-size: 14px;
+          color: #000;
         }
       `}</style>
     </nav>
