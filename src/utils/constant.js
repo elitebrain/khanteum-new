@@ -6,3 +6,5 @@ export const IMAGE_SERVER = "https://image.khanteum.com";
 export const CLOUDFRONT_VOD_DESTINATION_PREFIX =
   "https://d3oh3emdg2ecln.cloudfront.net";
 export const VIDEO_LIMIT = 10;
+export const API_URL = "https://api.khanteum.com/api/v2";
+export const LIVE_URL = "https://m.khanteum.com";

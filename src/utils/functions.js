@@ -5,13 +5,6 @@ import {
   NCLOUD_OBJECT_STORAGE_URL,
 } from "@/utils/constant";
 
-interface IConvertImage {
-  url: string;
-  width?: number;
-  height?: number;
-  isOriginal?: boolean;
-}
-
 /**
  * 이미지 url 변환 함수
  * @param url 이미지 주소
@@ -19,7 +12,7 @@ interface IConvertImage {
  * @param height 리사이즈 높이
  * @param isOriginal 원본 이미지 사용 여부
  */
-const convertImage = ({ url, width, height, isOriginal }: IConvertImage) => {
+const convertImage = ({ url, width, height, isOriginal }) => {
   let _url = url;
   if (_url.includes(AWS_DESTINATION_URL)) {
     _url = url.replace(AWS_DESTINATION_URL, CLOUDFRONT_VOD_DESTINATION_PREFIX);
@@ -39,6 +32,22 @@ const convertImage = ({ url, width, height, isOriginal }: IConvertImage) => {
 };
 
 /**
+ * 숫자 한자리씩 쪼개서 배열에 담기
+ * @param {number} num number
+ */
+const numberSplit = (num) => {
+  const numStr = num.toString().split("");
+  const arr = [];
+  if (numStr) {
+    numStr.forEach((str) => {
+      arr.push(+str);
+    });
+    return arr;
+  }
+  return [];
+};
+
+/**
  * 숫자 세자리 마다 , 표시 적용
  * @param number 변환할 숫자
  */
@@ -47,4 +56,4 @@ const numberWithCommas = (number) => {
   return number.toLocaleString();
 };
 
-export { convertImage, numberWithCommas };
+export { convertImage, numberSplit, numberWithCommas };

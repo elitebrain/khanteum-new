@@ -8,6 +8,7 @@ export default function App({ Component, pageProps }) {
   const { setHeight } = useLayoutStore();
   useEffect(() => {
     setHeight(window.innerHeight);
+    console.log(window.innerHeight);
 
     window.onresize = (e) => {
       setHeight(e.target.innerHeight);

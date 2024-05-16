@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 import { convertImage, numberWithCommas } from "@/utils/functions";
+import { LIVE_URL } from "@/utils/constant";
 
 const VideoItem = (props) => {
   const {
@@ -23,7 +24,7 @@ const VideoItem = (props) => {
       ref={lastVideoRef}
       onClick={() =>
         router.push(
-          `https://m.khanteum.com/videos?type=main&season=2024&currentVideoNo=${video_no}&category2No=${category_level2_no}&category3No=${category_level3_no}`
+          `${LIVE_URL}/videos?type=main&season=2024&currentVideoNo=${video_no}&category2No=${category_level2_no}&category3No=${category_level3_no}`
         )
       }
     >

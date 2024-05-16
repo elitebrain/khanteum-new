@@ -108,6 +108,15 @@ a {
   padding-bottom: 15px;
 }
 
+@keyframes rolling {
+  from {
+    transform: translateY(-900%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

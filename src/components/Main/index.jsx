@@ -3,7 +3,7 @@ import axios from "axios";
 
 import DefaultLayout from "@/components/layouts/DefaultLayout";
 import Banner from "@/components/Main/Banner";
-import { VIDEO_LIMIT } from "@/utils/constant";
+import { API_URL, LIVE_URL, VIDEO_LIMIT } from "@/utils/constant";
 import RankingList from "@/components/Main/RankingList";
 import OfficialVideoList from "@/components/Main/OfficialVideoList";
 import VideoList from "@/components/Main/VideoList";
@@ -18,9 +18,7 @@ const Main = () => {
    * 배너 목록 조회
    */
   const getBannerList = async () => {
-    const { data } = await axios.get(
-      "https://api.khanteum.com/api/v2/common/banners"
-    );
+    const { data } = await axios.get(`${API_URL}/common/banners`);
     if (window.innerWidth < 378) {
       setBannerList(
         data.banners.filter((banner) => banner.type === "mobile_sm")
@@ -35,9 +33,7 @@ const Main = () => {
    * 메인 데이터 조회 (랭킹목록 | 오피셜 영상 목록 | 카테고리 목록 & 카테고리별 영상 목록)
    */
   const getMainData = async () => {
-    const { data } = await axios.get(
-      "https://api.khanteum.com/api/v2/main/videos"
-    );
+    const { data } = await axios.get(`${API_URL}/main/videos`);
     setRankingList(data.rankList);
     setOfficialVideoList(data.officialVideoList);
     setCategoryList(data.categoryList);
@@ -52,7 +48,7 @@ const Main = () => {
   const getMoreVideoList = async ({ category_level2_no, offset }) => {
     setLoading(true);
     const { data } = await axios.get(
-      `https://api.khanteum.com/api/v2/main/videos/${category_level2_no}?offset=${offset}&limit=${VIDEO_LIMIT}`
+      `${API_URL}/main/videos/${category_level2_no}?offset=${offset}&limit=${VIDEO_LIMIT}`
     );
     setCategoryList((prevState) => {
       const idx = prevState.findIndex(
@@ -83,8 +79,7 @@ const Main = () => {
             key={category.category_level2_no}
             category_level2_no={category.category_level2_no}
             title={category.category_level2_korean_title}
-            linkUrl={`https://m.khanteum.com/category?category_no=${category.category_level2_no}`}
-            videoList={category.videoList}
+            linkUrl={`${LIVE_URL}/category?category_no=${category.category_level2_no}`}
           />
         ))}
       </div>

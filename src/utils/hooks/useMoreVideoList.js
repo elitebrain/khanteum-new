@@ -1,12 +1,12 @@
 import useSWRInfinite from "swr/infinite";
 
-import { fetcher } from "@/hooks/common";
-import { VIDEO_LIMIT } from "@/utils/constant";
+import { fetcher } from "@/utils/hooks/common";
+import { API_URL, VIDEO_LIMIT } from "@/utils/constant";
 
 const useMoreVideoList = ({ category_level2_no }) => {
   const { data, mutate, size, setSize, isLoading } = useSWRInfinite(
     (index) =>
-      `https://api.khanteum.com/api/v2/main/videos/${category_level2_no}?page=${
+      `${API_URL}/main/videos/${category_level2_no}?page=${
         index + 1
       }&limit=${VIDEO_LIMIT}`,
     fetcher,

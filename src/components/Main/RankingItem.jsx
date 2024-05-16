@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 import { convertImage } from "@/utils/functions";
+import { LIVE_URL } from "@/utils/constant";
 
 const RankingItem = (props) => {
   const { user_no, user_photo, nickname } = props;
@@ -12,9 +13,7 @@ const RankingItem = (props) => {
   return (
     <div
       className="container"
-      onClick={() =>
-        router.push(`https://m.khanteum.com/user?user_no=${user_no}`)
-      }
+      onClick={() => router.push(`${LIVE_URL}/user?user_no=${user_no}`)}
     >
       <Image
         src={convertImage({ url: user_photo, isOriginal: true })}

@@ -3,6 +3,7 @@ import ScrollContainer from "react-indiana-drag-scroll";
 
 import SectionTitle from "@/components/commons/SectionTitle";
 import RankingItem from "@/components/Main/RankingItem";
+import { LIVE_URL } from "@/utils/constant";
 
 const RankingList = (props) => {
   const { rankingList } = props;
@@ -10,7 +11,7 @@ const RankingList = (props) => {
     <section>
       <SectionTitle
         title="2024 모두의 창업 드리머 랭킹"
-        linkUrl="https://m.khanteum.com/ranking"
+        linkUrl={`${LIVE_URL}/ranking`}
       />
       <ScrollContainer
         className="ScrollContainer horizontal"

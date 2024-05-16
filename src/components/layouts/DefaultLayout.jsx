@@ -3,20 +3,26 @@ import React, { useState } from "react";
 import Header from "@/components/layouts/Header";
 import Content from "@/components/layouts/Content";
 import Gnb from "@/components/layouts/Gnb";
+import useLayoutStore from "@/store/useLayoutStore";
 
 const DefaultLayout = (props) => {
   const { children } = props;
-  const [headerHeight, setHeaderHeight] = useState(0);
-  const [gnbHeight, setGnbHeight] = useState(0);
+
+  const { setHeaderHeight, setGnbHeight, headerHeight, gnbHeight } =
+    useLayoutStore();
 
   const headerRef = (el) => {
     if (!el) return;
-    setHeaderHeight(el.offsetHeight);
+    if (el.offsetHeight !== headerHeight) {
+      setHeaderHeight(el.offsetHeight);
+    }
   };
 
   const gnbRef = (el) => {
     if (!el) return;
-    setGnbHeight(el.offsetHeight);
+    if (el.offsetHeight !== gnbHeight) {
+      setGnbHeight(el.offsetHeight);
+    }
   };
 
   return (

@@ -5,8 +5,8 @@ import SectionTitle from "@/components/commons/SectionTitle";
 import VideoItem from "@/components/Main/VideoItem";
 import EmptyVideo from "@/components/commons/EmptyVideo";
 import { VIDEO_LIMIT } from "@/utils/constant";
-import useIntersect from "@/hooks/useIntersect";
-import useMoreVideoList from "@/hooks/useMoreVideoList";
+import useIntersect from "@/utils/hooks/useIntersect";
+import useMoreVideoList from "@/utils/hooks/useMoreVideoList";
 
 const VideoList = (props) => {
   const { category_level2_no, title, linkUrl } = props;
