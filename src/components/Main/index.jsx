@@ -3,7 +3,7 @@ import axios from "axios";
 
 import DefaultLayout from "@/components/layouts/DefaultLayout";
 import Banner from "@/components/Main/Banner";
-import { DEV_API_URL, LIVE_URL, VIDEO_LIMIT } from "@/utils/constant";
+import { API_URL, LIVE_URL, VIDEO_LIMIT } from "@/utils/constant";
 import RankingList from "@/components/Main/RankingList";
 import OfficialVideoList from "@/components/Main/OfficialVideoList";
 import VideoList from "@/components/Main/VideoList";
@@ -21,7 +21,7 @@ const Main = () => {
    */
   const getBannerList = async () => {
     setBannerLoading(true);
-    const { data } = await axios.get(`${DEV_API_URL}/common/banners`);
+    const { data } = await axios.get(`${API_URL}/common/banners`);
     if (window.innerWidth < 378) {
       setBannerList(
         data.banners.filter((banner) => banner.type === "mobile_sm")
@@ -37,8 +37,8 @@ const Main = () => {
    * 메인 데이터 조회 (랭킹목록 | 오피셜 영상 목록 | 카테고리 목록 & 카테고리별 영상 목록)
    */
   const getMainData = async () => {
-    console.log("getMainData", `${DEV_API_URL}/main/videos`);
-    const { data } = await axios.get(`${DEV_API_URL}/main/videos`);
+    console.log("getMainData", `${API_URL}/main/videos`);
+    const { data } = await axios.get(`${API_URL}/main/videos`);
     setRankingList(data.rankList);
     setOfficialVideoList(data.officialVideoList);
     setCategoryList(data.categoryList);
@@ -53,7 +53,7 @@ const Main = () => {
   const getMoreVideoList = async ({ category_level2_no, offset }) => {
     setLoading(true);
     const { data } = await axios.get(
-      `${DEV_API_URL}/main/videos/${category_level2_no}?offset=${offset}&limit=${VIDEO_LIMIT}`
+      `${API_URL}/main/videos/${category_level2_no}?offset=${offset}&limit=${VIDEO_LIMIT}`
     );
     setCategoryList((prevState) => {
       const idx = prevState.findIndex(

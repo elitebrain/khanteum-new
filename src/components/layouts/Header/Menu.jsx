@@ -3,7 +3,7 @@ import axios from "axios";
 
 import useLayoutStore from "@/store/useLayoutStore";
 import useUserStore from "@/store/useUserStore";
-import { DEV_API_URL } from "@/utils/constant";
+import { API_URL } from "@/utils/constant";
 
 const Menu = (props) => {
   const { isOpenMenu } = props;
@@ -21,7 +21,7 @@ const Menu = (props) => {
   };
 
   const handleLogin = async () => {
-    const { data } = await axios.post(`${DEV_API_URL}/user/mobile/login`, {
+    const { data } = await axios.post(`${API_URL}/user/mobile/login`, {
       loginType: "local",
       email: loginInput.email,
       password: loginInput.password,
