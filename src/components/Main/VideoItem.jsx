@@ -2,8 +2,14 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-import { convertImage, numberWithCommas } from "@/utils/functions";
-import { LIVE_URL } from "@/utils/constant";
+import { convertImage, numberWithKorUnit } from "@/utils/functions";
+import {
+  DEV_URL,
+  PC_VIDEO_THUMBNAIL_HEIGHT,
+  PC_VIDEO_THUMBNAIL_WIDTH,
+  VIDEO_THUMBNAIL_HEIGHT,
+  VIDEO_THUMBNAIL_WIDTH,
+} from "@/utils/constant";
 
 const VideoItem = (props) => {
   const {
@@ -24,29 +30,35 @@ const VideoItem = (props) => {
       ref={lastVideoRef}
       onClick={() =>
         router.push(
-          `${LIVE_URL}/videos?type=main&season=2024&currentVideoNo=${video_no}&category2No=${category_level2_no}&category3No=${category_level3_no}`
+          `${DEV_URL}/videos?type=main&season=2024&currentVideoNo=${video_no}&category2No=${category_level2_no}&category3No=${category_level3_no}`
         )
       }
     >
       <Image
         src={convertImage({ url: thumbnail, isOriginal: true })}
-        width={118}
-        height={210}
+        // width={VIDEO_THUMBNAIL_WIDTH}
+        // height={VIDEO_THUMBNAIL_HEIGHT}
         alt={`video_${video_no}`}
         style={{ objectFit: "cover" }}
+        sizes={`(min-width: 1200px) ${PC_VIDEO_THUMBNAIL_WIDTH}, ${VIDEO_THUMBNAIL_WIDTH}`}
+        fill
       />
       <div className="cover">
         <div className="count_wrapper">
-          <p className="count_value">{numberWithCommas(count_like)}</p>
-          <p className="count_value">{numberWithCommas(count_view)}</p>
+          <p className="count_value">{`좋아요 ${numberWithKorUnit(
+            count_like
+          )}회`}</p>
+          <p className="count_value">{`조회수 ${numberWithKorUnit(
+            count_view
+          )}회`}</p>
         </div>
       </div>
       <style jsx>{`
         .container {
           position: relative;
           display: inline-block;
-          width: 118px;
-          height: 210px;
+          width: ${VIDEO_THUMBNAIL_WIDTH}px;
+          height: ${VIDEO_THUMBNAIL_HEIGHT}px;
           border-radius: 8px;
           overflow: hidden;
           margin-right: 12px;
@@ -62,8 +74,9 @@ const VideoItem = (props) => {
           right: 0;
           bottom: 0;
           background: linear-gradient(
-            rgba(3, 3, 3, 0) 47.92%,
-            rgba(3, 3, 3, 0.5) 100%
+            to top,
+            rgba(0, 0, 0, 0.6) 0,
+            rgba(0, 0, 0, 0) 100%
           );
         }
         .cover > .count_wrapper {
@@ -73,8 +86,16 @@ const VideoItem = (props) => {
         }
         .cover > .count_wrapper > p.count_value {
           font-size: 12px;
-          font-weight: 300;
+          font-weight: 400;
           color: #fff;
+          line-height: 18px;
+        }
+
+        @media (min-width: 1200px) {
+          .container {
+            width: ${PC_VIDEO_THUMBNAIL_WIDTH}px;
+            height: ${PC_VIDEO_THUMBNAIL_HEIGHT}px;
+          }
         }
       `}</style>
     </div>

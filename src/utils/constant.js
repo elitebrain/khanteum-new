@@ -1,10 +1,40 @@
-export const AWS_DESTINATION_URL =
+const AWS_DESTINATION_URL =
   "https://khanteum-vod-destination.s3.ap-northeast-2.amazonaws.com";
-export const NCLOUD_OBJECT_STORAGE_URL =
+const NCLOUD_OBJECT_STORAGE_URL =
   "https://khancomes-bucket001.kr.object.ncloudstorage.com";
-export const IMAGE_SERVER = "https://image.khanteum.com";
-export const CLOUDFRONT_VOD_DESTINATION_PREFIX =
+const IMAGE_SERVER = "https://image.khanteum.com";
+const CLOUDFRONT_VOD_DESTINATION_PREFIX =
   "https://d3oh3emdg2ecln.cloudfront.net";
-export const VIDEO_LIMIT = 10;
-export const API_URL = "https://api.khanteum.com/api/v2";
-export const LIVE_URL = "https://m.khanteum.com";
+const VIDEO_LIMIT = 10;
+const API_URL = "https://api.khanteum.com/api/v2";
+const LIVE_URL = "https://m.khanteum.com";
+const DEV_API_URL = "http://127.0.0.1:4000/api/v2";
+const DEV_URL = "http://127.0.0.1:3000";
+const VIDEO_THUMBNAIL_WIDTH = 152;
+const VIDEO_THUMBNAIL_HEIGHT = 210;
+const PC_VIDEO_THUMBNAIL_WIDTH = 188;
+const PC_VIDEO_THUMBNAIL_HEIGHT = 263;
+const OFFICIAL_VIDEO_THUMBNAIL_WIDTH = 152;
+const OFFICIAL_VIDEO_THUMBNAIL_HEIGHT = 212;
+const PC_OFFICIAL_VIDEO_THUMBNAIL_WIDTH = 216;
+const PC_OFFICIAL_VIDEO_THUMBNAIL_HEIGHT = 302;
+
+export {
+  AWS_DESTINATION_URL,
+  NCLOUD_OBJECT_STORAGE_URL,
+  IMAGE_SERVER,
+  CLOUDFRONT_VOD_DESTINATION_PREFIX,
+  VIDEO_LIMIT,
+  API_URL,
+  LIVE_URL,
+  DEV_API_URL,
+  DEV_URL,
+  VIDEO_THUMBNAIL_WIDTH,
+  VIDEO_THUMBNAIL_HEIGHT,
+  PC_VIDEO_THUMBNAIL_WIDTH,
+  PC_VIDEO_THUMBNAIL_HEIGHT,
+  OFFICIAL_VIDEO_THUMBNAIL_WIDTH,
+  OFFICIAL_VIDEO_THUMBNAIL_HEIGHT,
+  PC_OFFICIAL_VIDEO_THUMBNAIL_WIDTH,
+  PC_OFFICIAL_VIDEO_THUMBNAIL_HEIGHT,
+};

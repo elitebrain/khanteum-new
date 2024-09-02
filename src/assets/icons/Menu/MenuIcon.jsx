@@ -59,16 +59,16 @@ const MenuIcon = ({ isActive }) => {
           cursor: pointer;
         }
         svg > rect.menu:nth-child(1) {
-          animation: menu-top 0.6s forwards;
+          animation: menu-top 0.4s forwards;
         }
         svg > rect.menu:nth-child(3) {
-          animation: menu-bottom 0.6s forwards;
+          animation: menu-bottom 0.4s forwards;
         }
         svg > rect.close:nth-child(1) {
-          animation: close-top 0.6s forwards;
+          animation: close-top 0.4s forwards;
         }
         svg > rect.close:nth-child(2) {
-          animation: close-bottom 0.6s forwards;
+          animation: close-bottom 0.4s forwards;
         }
         @keyframes menu-top {
           from {

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 import { convertImage } from "@/utils/functions";
-import { LIVE_URL } from "@/utils/constant";
+import { DEV_URL } from "@/utils/constant";
 
 const RankingItem = (props) => {
   const { user_no, user_photo, nickname } = props;
@@ -13,7 +13,7 @@ const RankingItem = (props) => {
   return (
     <div
       className="container"
-      onClick={() => router.push(`${LIVE_URL}/user?user_no=${user_no}`)}
+      onClick={() => router.push(`${DEV_URL}/user?user_no=${user_no}`)}
     >
       <Image
         src={convertImage({ url: user_photo, isOriginal: true })}
@@ -24,6 +24,7 @@ const RankingItem = (props) => {
           objectFit: "cover",
           borderRadius: "50%",
           boxShadow: "rgba(0, 0, 0, 0.18) 0px 2px 6px",
+          marginBottom: "6px",
         }}
         alt={`ranking_${user_no}`}
       />

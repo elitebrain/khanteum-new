@@ -72,6 +72,9 @@ const SlotMachine = () => {
         src="https://khanteum.s3.ap-northeast-2.amazonaws.com/image/slotmachine/slot-machine-bg.png"
         alt="khanteum_slot_machine_bg"
         fill
+        sizes={`(min-width: 768px) 345px, (min-width: 320px) 207px, 170px`}
+        priority
+        quality={100}
       />
       <div className="slot_items" ref={slotItemsRef}>
         {positions.map((position, i) => (

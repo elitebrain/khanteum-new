@@ -56,4 +56,22 @@ const numberWithCommas = (number) => {
   return number.toLocaleString();
 };
 
-export { convertImage, numberSplit, numberWithCommas };
+/**
+ * 만 억 단위 붙이기
+ * @param {number} number 변환할 숫자
+ */
+const numberWithKorUnit = (number) => {
+  if (number < 10000) {
+    return number;
+  } else if (number < 100000) {
+    return `${parseInt((number / 10000) * 10) / 10}만`;
+  } else if (number < 100000000) {
+    return `${parseInt(number / 10000)}만`;
+  } else if (number < 1000000000) {
+    return `${parseInt((number / 100000000) * 10) / 10}억`;
+  } else {
+    return `${parseInt(number / 100000000)}억`;
+  }
+};
+
+export { convertImage, numberSplit, numberWithCommas, numberWithKorUnit };

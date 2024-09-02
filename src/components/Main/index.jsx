@@ -3,13 +3,15 @@ import axios from "axios";
 
 import DefaultLayout from "@/components/layouts/DefaultLayout";
 import Banner from "@/components/Main/Banner";
-import { API_URL, LIVE_URL, VIDEO_LIMIT } from "@/utils/constant";
+import { DEV_API_URL, LIVE_URL, VIDEO_LIMIT } from "@/utils/constant";
 import RankingList from "@/components/Main/RankingList";
 import OfficialVideoList from "@/components/Main/OfficialVideoList";
 import VideoList from "@/components/Main/VideoList";
+import LoadingCircle from "@/components/commons/LoadingCircle";
 
 const Main = () => {
   const [bannerList, setBannerList] = useState([]);
+  const [bannerLoading, setBannerLoading] = useState(false);
   const [rankingList, setRankingList] = useState([]);
   const [officialVideoList, setOfficialVideoList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
@@ -18,7 +20,8 @@ const Main = () => {
    * 배너 목록 조회
    */
   const getBannerList = async () => {
-    const { data } = await axios.get(`${API_URL}/common/banners`);
+    setBannerLoading(true);
+    const { data } = await axios.get(`${DEV_API_URL}/common/banners`);
     if (window.innerWidth < 378) {
       setBannerList(
         data.banners.filter((banner) => banner.type === "mobile_sm")
@@ -28,12 +31,14 @@ const Main = () => {
     } else {
       setBannerList(data.banners.filter((banner) => banner.type === "pc"));
     }
+    setBannerLoading(false);
   };
   /**
    * 메인 데이터 조회 (랭킹목록 | 오피셜 영상 목록 | 카테고리 목록 & 카테고리별 영상 목록)
    */
   const getMainData = async () => {
-    const { data } = await axios.get(`${API_URL}/main/videos`);
+    console.log("getMainData", `${DEV_API_URL}/main/videos`);
+    const { data } = await axios.get(`${DEV_API_URL}/main/videos`);
     setRankingList(data.rankList);
     setOfficialVideoList(data.officialVideoList);
     setCategoryList(data.categoryList);
@@ -48,7 +53,7 @@ const Main = () => {
   const getMoreVideoList = async ({ category_level2_no, offset }) => {
     setLoading(true);
     const { data } = await axios.get(
-      `${API_URL}/main/videos/${category_level2_no}?offset=${offset}&limit=${VIDEO_LIMIT}`
+      `${DEV_API_URL}/main/videos/${category_level2_no}?offset=${offset}&limit=${VIDEO_LIMIT}`
     );
     setCategoryList((prevState) => {
       const idx = prevState.findIndex(
@@ -70,7 +75,11 @@ const Main = () => {
 
   return (
     <DefaultLayout>
-      <Banner bannerList={bannerList} />
+      {bannerLoading || bannerList.length === 0 ? (
+        <LoadingCircle />
+      ) : (
+        <Banner bannerList={bannerList} />
+      )}
       <div className="indent_container">
         <RankingList rankingList={rankingList} />
         <OfficialVideoList officialVideoList={officialVideoList} />
@@ -85,7 +94,7 @@ const Main = () => {
       </div>
       <style jsx>{`
         .indent_container {
-          padding: 25px;
+          padding-inline: 25px;
         }
       `}</style>
     </DefaultLayout>
